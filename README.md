@@ -28,3 +28,23 @@ File Type Counts:
 .pdf       3
 .doc       2
 This script assumes that file extensions are separated from the file name by a dot (.). If your file naming conventions use a different separator, you'll need to adjust the script accordingly.
+
+
+
+ques3.sh
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <service_name>"
+  exit 1
+fi
+This block checks if the script is called with exactly one command-line argument (i.e., the service name). If not, it prints an error message and exits with a non-zero status code (1)
+The script uses a for loop to iterate over the command-line arguments ($@), which contains all the service names passed as arguments.
+if [ "$(ps -ef | grep -v grep | grep $SERVICE_NAME | wc -l)" -gt 0 ]; then
+  # ...
+else
+  # ...
+fi
+The script checks the status of each service using the same logic as before.
+Example O/P-
+./script.sh apache2 sshd postfix
+This would check the status of the apache2, sshd, and postfix services.
+--this script assumes that the service names are exact matches.
